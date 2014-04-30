@@ -52,7 +52,7 @@ philz_ramdisk () {
 		stop ${SVCNAME}
 	done
 
-	for RUNNINGPRC in $(ps | grep /system/bin | grep -v grep | grep -v chargemon | awk '{print $1}' ) 
+	for RUNNINGPRC in $(ps | grep /system/bin | grep -v grep | grep -v wipedata | awk '{print $1}' ) 
 	do
 		kill -9 $RUNNINGPRC
 	done
@@ -62,13 +62,38 @@ philz_ramdisk () {
 		kill -9 $RUNNINGPRC
 	done
 
+	sync
+
+        # umount
+
+        ## /system
+        umount -l /dev/block/mmcblk0p13
+        ## /data
+        umount -l /dev/block/mmcblk0p15
+        ## /mnt/idd
+        umount -l /dev/block/mmcblk0p10
+        ## /cache
+        umount -l /dev/block/mmcblk0p14
+        ## /lta-label
+        umount -l /dev/block/mmcblk0p12
+
 	umount -l /system
 	umount -l /data
 	umount -l /mnt/idd
 	umount -l /cache
 	umount -l /lta-label
 
-        umount -l /storage/sdcard1
+        # legacy folders
+	umount /storage/emulated/legacy/Android/obb
+	umount /storage/emulated/legacy
+	umount /storage/emulated/0/Android/obb
+	umount /storage/emulated/0
+	umount /storage/emulated
+
+	umount /storage/removable/sdcard1
+	umount /storage/removable/usbdisk
+	umount /storage/removable
+	umount /storage
 
 	umount -l /mnt/obb
 	umount -l /mnt/asec
@@ -82,12 +107,14 @@ philz_ramdisk () {
         umount -l /proc
         umount -l /sys
 
-        rm -vrf /sbin
-        rm -vrf /dev
-        rm -vrf /proc
-        rm -vrf /sys
-        rm -vrf /cache
-	rm sdcard etc init* uevent* default*
+	sync
+
+	# clean /
+	cd /
+        rm -r /sbin
+        rm -r /cache
+        rm -r /storage
+	rm -f sdcard sdcard1 ext_card etc init* uevent*
 
         # setup tz.conf for init
         echo on init > /tz.conf
@@ -119,7 +146,7 @@ cwm_ramdisk () {
 		stop ${SVCNAME}
 	done
 
-	for RUNNINGPRC in $(ps | grep /system/bin | grep -v grep | grep -v chargemon | awk '{print $1}' ) 
+	for RUNNINGPRC in $(ps | grep /system/bin | grep -v grep | grep -v wipedata | awk '{print $1}' ) 
 	do
 		kill -9 $RUNNINGPRC
 	done
@@ -334,7 +361,8 @@ then
 	philz_ramdisk
 	cd /
 	tar xf /temp/philz.tar
-	sleep 1
+	sync
+	sleep 2
 
 	# turn off leds
 	echo '0' > $LED_BLUE
@@ -365,7 +393,8 @@ then
 	cwm_ramdisk
 	cd /
 	tar xf /temp/recovery.tar
-	sleep 1
+	sync
+	sleep 2
 
 	# turn off leds
 	echo '0' > $LED_BLUE
@@ -383,5 +412,6 @@ fi
 	cd /
 	tar xf /temp/ramdisk.tar
 	sync
-	sleep 1
+	sleep 2
 	chroot / /init
+	sleep 5
