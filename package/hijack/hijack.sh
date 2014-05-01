@@ -5,7 +5,7 @@
 #
 # modified by: Bagyusz
 #
-# 2014.03.03
+# 2014.04.30
 #
 ###############################################
 
@@ -288,39 +288,338 @@ cm_ramdisk () {
 	rm -f sdcard sdcard1 ext_card init*
 }
 
-# Turn on GREEN-led.
-echo '128' > $LED3_GREEN_CURRENT
-echo '128' > $LED3_GREEN
-sleep 0.6
-# Turn on white-led.
-echo '128' > $LED_RED_CURRENT
-echo '128' > $LED_BLUE_CURRENT
-echo '128' > $LED_GREEN_CURRENT
-echo '64' > $LED_RED
-echo '128' > $LED_BLUE
-echo '128' > $LED_GREEN
-sleep 0.6
-# Turn on red-led.
-echo '128' > $LED2_RED_CURRENT
-echo '128' > $LED2_RED
-sleep 0.6
+## Knight Rider Light Bard (Beta v0.1 config by bagyusz)
 
-# Turn off GREEN-led.
-echo '0' > $LED3_GREEN_CURRENT
-# Turn off white-led.
-echo '0' > $LED_RED_CURRENT
-echo '0' > $LED_BLUE_CURRENT
-echo '0' > $LED_GREEN_CURRENT
-# Turn off RED-led.
-echo '0' > $LED2_RED_CURRENT
-  
-# Turn on blue-led.
-echo '128' > $LED2_BLUE_CURRENT
-echo '128' > $LED2_BLUE
+        # fake data factory reset led fix
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED3_RED
+	echo '0' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '0' > $LED2_RED
+	echo '0' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+##1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED3_RED
+	echo '0' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+##
+sleep 0.1
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '0' > $LED2_RED
+	echo '0' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+##2
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.3
+	echo '0' > $LED3_RED
+	echo '0' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+sleep 0.1
+# Pulse RED light
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '48' > $LED3_RED
+	echo '48' > $LED3_RED_CURRENT
+	echo '48' > $LED_RED
+	echo '48' > $LED_RED_CURRENT
+	echo '48' > $LED2_RED
+	echo '48' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '48' > $LED3_RED
+	echo '48' > $LED3_RED_CURRENT
+	echo '48' > $LED_RED
+	echo '48' > $LED_RED_CURRENT
+	echo '48' > $LED2_RED
+	echo '48' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
+##
+sleep 0.1
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '48' > $LED3_RED
+	echo '48' > $LED3_RED_CURRENT
+	echo '48' > $LED_RED
+	echo '48' > $LED_RED_CURRENT
+	echo '48' > $LED2_RED
+	echo '48' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '32' > $LED3_RED
+	echo '32' > $LED3_RED_CURRENT
+	echo '32' > $LED_RED
+	echo '32' > $LED_RED_CURRENT
+	echo '32' > $LED2_RED
+	echo '32' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '48' > $LED3_RED
+	echo '48' > $LED3_RED_CURRENT
+	echo '48' > $LED_RED
+	echo '48' > $LED_RED_CURRENT
+	echo '48' > $LED2_RED
+	echo '48' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '64' > $LED3_RED
+	echo '64' > $LED3_RED_CURRENT
+	echo '64' > $LED_RED
+	echo '64' > $LED_RED_CURRENT
+	echo '64' > $LED2_RED
+	echo '64' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
+sleep 0.1
+	echo '128' > $LED3_RED
+	echo '128' > $LED3_RED_CURRENT
+	echo '128' > $LED_RED
+	echo '128' > $LED_RED_CURRENT
+	echo '128' > $LED2_RED
+	echo '128' > $LED2_RED_CURRENT
 
 # Trigger short vibration
-echo '200' > /sys/class/timed_output/vibrator/enable
+echo '100' > /sys/class/timed_output/vibrator/enable
+sleep 0.2
+echo '100' > /sys/class/timed_output/vibrator/enable
 
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
 
 for EVENTDEV in $(ls /dev/input/event*)
 do
@@ -336,8 +635,12 @@ do
 done
 
 # turn off leds
-echo '0' > $LED2_BLUE
-echo '0' > $LED2_BLUE_CURRENT
+	echo '0' > $LED3_RED
+	echo '0' > $LED3_RED_CURRENT
+	echo '0' > $LED_RED
+	echo '0' > $LED_RED_CURRENT
+	echo '0' > $LED2_RED
+	echo '0' > $LED2_RED_CURRENT
 
 sleep 1
 
@@ -348,13 +651,21 @@ hexdump /temp/keyevent* | grep -e '^.* 0001 0072 .... ....$' > /temp/keycheck_do
 if [ -s /temp/keycheck_up -o -e /cache/recovery/boot ]
 then
 
-	# Show blue led
-	echo '128' > $LED_BLUE
-	echo '128' > $LED_BLUE_CURRENT
-	echo '0' > $LED_GREEN
-	echo '0' > $LED_GREEN_CURRENT
-	echo '128' > $LED_RED
-	echo '128' > $LED_RED_CURRENT
+	# Show pink led
+	echo '96' > $LED3_BLUE
+	echo '96' > $LED3_BLUE_CURRENT
+	echo '96' > $LED3_RED
+	echo '96' > $LED3_RED_CURRENT
+
+	echo '96' > $LED_BLUE
+	echo '96' > $LED_BLUE_CURRENT
+	echo '96' > $LED_RED
+	echo '96' > $LED_RED_CURRENT
+
+	echo '96' > $LED2_BLUE
+	echo '96' > $LED2_BLUE_CURRENT
+	echo '96' > $LED2_RED
+	echo '96' > $LED2_RED_CURRENT
 
 	rm /temp/keycheck_up
 	rm /cache/recovery/boot
@@ -365,12 +676,20 @@ then
 	sleep 2
 
 	# turn off leds
+	echo '0' > $LED3_BLUE
+	echo '0' > $LED3_BLUE_CURRENT
+	echo '0' > $LED3_RED
+	echo '0' > $LED3_RED_CURRENT
+
 	echo '0' > $LED_BLUE
 	echo '0' > $LED_BLUE_CURRENT
-	echo '0' > $LED_GREEN
-	echo '0' > $LED_GREEN_CURRENT
 	echo '0' > $LED_RED
 	echo '0' > $LED_RED_CURRENT
+
+	echo '0' > $LED2_BLUE
+	echo '0' > $LED2_BLUE_CURRENT
+	echo '0' > $LED2_RED
+	echo '0' > $LED2_RED_CURRENT
 
 	exec /init
 	sleep 2
@@ -380,13 +699,14 @@ fi
 if [ -s /temp/keycheck_down -o -e /cache/recovery/boot ]
 then
 
-	# Show blue led
-	echo '0' > $LED_BLUE
-	echo '0' > $LED_BLUE_CURRENT
-	echo '128' > $LED_GREEN
-	echo '128' > $LED_GREEN_CURRENT
-	echo '0' > $LED_RED
-	echo '0' > $LED_RED_CURRENT
+	# Show green led
+	echo '96' > $LED3_GREEN
+	echo '96' > $LED3_GREEN_CURRENT
+	echo '96' > $LED_GREEN
+	echo '96' > $LED_GREEN_CURRENT
+	echo '96' > $LED2_GREEN
+	echo '96' > $LED2_GREEN_CURRENT
+
 
 	rm /temp/keycheck_down
 	rm /cache/recovery/boot
@@ -397,12 +717,12 @@ then
 	sleep 2
 
 	# turn off leds
-	echo '0' > $LED_BLUE
-	echo '0' > $LED_BLUE_CURRENT
+	echo '0' > $LED3_GREEN
+	echo '0' > $LED3_GREEN_CURRENT
 	echo '0' > $LED_GREEN
 	echo '0' > $LED_GREEN_CURRENT
-	echo '0' > $LED_RED
-	echo '0' > $LED_RED_CURRENT
+	echo '0' > $LED2_GREEN
+	echo '0' > $LED2_GREEN_CURRENT
 
 	chroot / /init
 	sleep 2
