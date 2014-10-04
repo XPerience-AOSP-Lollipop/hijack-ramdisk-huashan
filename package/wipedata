@@ -1,35 +1,28 @@
 #!/system/bin/sh
-
 #
-# ramdisk hijack for Xperia SP 4.3 version
+# ramdisk hijack for Xperia SP 4.4 version
 # by Peter Nyilas - dh.harald@XDA
+# modefild by bagyusz 20141001
 #
 # credits
-# 2nd-init: https://github.com/a853/a853_2nd_init/
 # idea: KeiranFTW@XDA
 # recoveries for Xperia SP: cray_Doze, davidmarco, dssmex
 # root/recovery ramdisk: CyanogenMod team
 #
 # To enter recovery: press vol- during blue light
-# Default: hijacks rootfs, and extract CM ramdisk for CM10.2
-# 
-# Use: copy files to /systeb/bin and fix permissions...
-#
 
 export PATH=/system/xbin:/system/bin:/sbin/:bin
 
 mount -o remount,rw /
 
-FLAG="/temp/ver_12.1.A.1.201.txt"
-if [ ! -f $FLAG ]; then
 mkdir /temp/
 cd /temp
 tar -xf /system/bin/hijack.tar
+cp /system/bin/ramdisk.tar /temp
+cp /system/bin/cwm.tar /temp
+cp /system/bin/philz.tar /temp
 
-cp /system/bin/ver_12.1.A.1.201_CM11.0.txt /temp/
-   touch $FLAG
-else
-   echo "run hijack.sh"
-fi
+sleep 0.6
 
 exec /temp/hijack.sh
+

@@ -32,20 +32,20 @@ LED3_BLUE_CURRENT="/sys/class/leds/LED3_B/led_current"
 LED3_GREEN="/sys/class/leds/LED3_G/brightness"
 LED3_GREEN_CURRENT="/sys/class/leds/LED3_G/led_current"
 
-philz_ramdisk () {
+#-----------------------------------------------------------------------------------------------
+
+recovery_ramdisk () {
 	mount -o remount,rw rootfs /
 	cd /
-# Stop services
-
 # Initialize system clock.
         ### set timezone...
         export TZ="$(getprop persist.sys.timezone)"
         ### start time_daemon...
         /system/bin/time_daemon &
-        sleep 5
+        sleep 3
         ### kill time_daemon...
         kill -9 $(ps | grep time_daemon | grep -v grep | awk -F' ' '{print $1}')
-
+#Stop services
 	for SVCRUNNING in $(getprop | grep -E '^\[init\.svc\..*\]: \[running\]' | grep -v ueventd)
 	do
 		SVCNAME=$(expr ${SVCRUNNING} : '\[init\.svc\.\(.*\)\]:.*')
@@ -63,6 +63,10 @@ philz_ramdisk () {
 	done
 
 	sync
+
+	#insmod exFAT module
+
+	insmod /system/lib/modules/texfat.ko
 
         # umount
 
@@ -126,65 +130,7 @@ philz_ramdisk () {
 
 #-----------------------------------------------------------------------------------------------
 
-cwm_ramdisk () {
-	mount -o remount,rw rootfs /
-	cd /
-# Stop services
-
-# Initialize system clock.
-        ### set timezone...
-        export TZ="$(getprop persist.sys.timezone)"
-        ### start time_daemon...
-        /system/bin/time_daemon &
-        sleep 5
-        ### kill time_daemon...
-        kill -9 $(ps | grep time_daemon | grep -v grep | awk -F' ' '{print $1}')
-
-	for SVCRUNNING in $(getprop | grep -E '^\[init\.svc\..*\]: \[running\]' | grep -v ueventd)
-	do
-		SVCNAME=$(expr ${SVCRUNNING} : '\[init\.svc\.\(.*\)\]:.*')
-		stop ${SVCNAME}
-	done
-
-	for RUNNINGPRC in $(ps | grep /system/bin | grep -v grep | grep -v wipedata | awk '{print $1}' ) 
-	do
-		kill -9 $RUNNINGPRC
-	done
-
-	for RUNNINGPRC in $(ps | grep /sbin/ | grep -v grep | awk '{print $1}' )
-	do
-		kill -9 $RUNNINGPRC
-	done
-
-	umount /system
-	umount /data
-	umount /mnt/idd
-	umount /cache
-	umount /lta-label
-
-	umount /mnt/obb
-	umount /mnt/asec
-	umount /mnt/secure/staging
-	umount /mnt/secure
-	umount /mnt
-	umount /acct
-	umount /dev/cpuctl
-	umount /dev/pts
-
-        rm -r /sbin
-	rm sdcard etc init* uevent* default*
-
-        # setup tz.conf for init
-        echo on init > /tz.conf
-        echo export TZ "$(getprop persist.sys.timezone)" >> /tz.conf
-        chmod 750 /tz.conf
-        tar cf /zoneinfo.tar /system/usr/share/zoneinfo
-
-}
-
-#-----------------------------------------------------------------------------------------------
-
-cm_ramdisk () {
+android_ramdisk () {
 	mount -o remount,rw rootfs /
 	cd /
 # Stop services
@@ -669,11 +615,11 @@ then
 
 	rm /temp/keycheck_up
 	rm /cache/recovery/boot
-	philz_ramdisk
+	recovery_ramdisk
 	cd /
 	tar xf /temp/philz.tar
 	sync
-	sleep 2
+	sleep 1
 
 	# turn off leds
 	echo '0' > $LED3_BLUE
@@ -692,7 +638,6 @@ then
 	echo '0' > $LED2_RED_CURRENT
 
 	exec /init
-	sleep 2
 fi
 
 # vol-, boot CWM recovery
@@ -710,11 +655,11 @@ then
 
 	rm /temp/keycheck_down
 	rm /cache/recovery/boot
-	cwm_ramdisk
+	recovery_ramdisk
 	cd /
-	tar xf /temp/recovery.tar
+	tar xf /temp/cwm.tar
 	sync
-	sleep 2
+	sleep 1
 
 	# turn off leds
 	echo '0' > $LED3_GREEN
@@ -724,14 +669,11 @@ then
 	echo '0' > $LED2_GREEN
 	echo '0' > $LED2_GREEN_CURRENT
 
-	chroot / /init
-	sleep 2
+	exec /init
 fi
 
-	cm_ramdisk
+	android_ramdisk
 	cd /
 	tar xf /temp/ramdisk.tar
 	sync
-	sleep 2
 	chroot / /init
-	sleep 5
